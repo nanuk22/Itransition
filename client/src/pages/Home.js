@@ -1,29 +1,100 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Form, Container, Stack, Carousel, CarouselItem, CarouselCaption, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
-import Register from './Register';
+import { MDBCol, MDBFormInline, MDBIcon } from "mdbreact";
+import Header from './Header.js';
 
 
-const Home = () => {
+
+const Collections = [
+    { id: 0, category: "Books", name: "Paka" },
+    { id: 1, category: "Books", name: "Vasika" },
+    { id: 2, category: "Money", name: "Kotik" },
+    { id: 3, category: "Maps", name: "Gogo" },
+    { id: 4, category: "Cars", name: "Nigga" },
+];
+
+function CreateNewItem({ name, category }) {
     return (
-        <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
-            <Navbar.Brand href="#home">MyCollection</Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="ml-auto">
-                    <Link to="/login" className="nav-link">
-                        Login
-                    </Link>
-                    <Link to="/register" className="nav-link">
-                        Register
-                    </Link>
-                    <Nav.Link href="#profile">Profile</Nav.Link>
-                </Nav>
-            </Navbar.Collapse>
-        </Navbar>
+        <div>
+            <p>{name}</p>
+            <p>{category}</p>
+        </div>
+    );
+}
 
+function NewItems() {
+    return (
+        <Container>
+            <h2>New Items</h2>
+            <Row>
+                {Collections.map((item) => {
+                    console.log(item);
+                    return (
+                        <Col key={item.id}><CreateNewItem name={item.name} category={item.category} /></Col>)
+                })}
+            </Row>
+        </Container>
+    );
+}
+
+function BiggestCollections() {
+    return (<div className='m-auto'><h2>Biggest Collections</h2>
+        <Carousel interval={null}>
+
+            <Carousel.Item>
+                <img width="80%" height="400" src="https://www.shutterstock.com/image-vector/countryside-panorama-evening-jpg-version-600nw-23688139.jpg" text="First slide" />
+                <Carousel.Caption>
+                    <h3>First slide label</h3>
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+                <img width="80%" height="400" src="https://c4.wallpaperflare.com/wallpaper/324/424/56/waterfall-high-quality-hd-jpg-green-and-purple-water-falls-illustration-wallpaper-preview.jpg" text="Second slide" />
+                <Carousel.Caption>
+                    <h3>Second slide label</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item>
+                <img width="80%" height="400" src="https://samples-files.com/samples/Images/jpg/1920-1080-sample.jpg" text="Third slide" />
+                <Carousel.Caption>
+                    <h3>Third slide label</h3>
+                    <p>
+                        Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+                    </p>
+                </Carousel.Caption>
+            </Carousel.Item>
+        </Carousel></div>
+    )
+}
+
+function Tags() {
+    return (
+        <div>list of tags</div>
+    )
+}
+
+function Main() {
+    return (
+        <Stack gap={5}>
+            <div className='mb-2'>
+                <Header />
+            </div>
+            <div>
+                <NewItems />
+            </div>
+            <div>
+                <BiggestCollections />
+            </div>
+            <div>
+                <Tags />
+            </div>
+        </Stack>
     );
 };
 
-export default Home;
+
+
+export default Main;

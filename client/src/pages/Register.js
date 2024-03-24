@@ -1,77 +1,73 @@
 import React, { useState, useMemo } from 'react';
 import { Button, Form, Navbar } from 'react-bootstrap';
+import Header from './Header.js';
+import Main from './Home.js';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 
-const Register = () => {
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+function RegistrationForm() {
+    const [formData, setFormData] = useState({
+        username: '',
+        email: '',
+        password: ''
+    });
 
-    const handleRegister = async (e) => {
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+    const navigate = useNavigate();
+    const handleSubmit = async (e) => {
+        console.log('test');
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:5000/register', {
+            const response = await fetch('http://localhost:3001/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ name, email, password }),
+                body: JSON.stringify(formData),
             });
-
             if (!response.ok) {
-                throw new Error(`Failed to register. Status: ${response.status}`);
+                const data = await response.json();
+                throw new Error(`Failed to register. Status: ${response.status}. Error: ${data.error}`);
             }
-
-            const data = await response.json();
-            console.log('Registration response:', data);
+            console.log('Registration successful');
+            navigate('/login');
         } catch (error) {
-            console.error('Registration error:', error.message);
+            console.error('Registration failed:', error);
         }
     };
 
-return (
-    
-    <Form onSubmit={handleRegister}>
-        <Form.Group controlId="formUsername">
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-                type="text"
-                placeholder="Enter username"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-            />
-        </Form.Group>
+    return (
 
-        <Form.Group controlId="formUseremail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-                type="text"
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-        </Form.Group>
+        <form onSubmit={handleSubmit}>
+            <input type="text" name="username" value={formData.username} onChange={handleChange} placeholder="Username" />
+            <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" />
+            <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Password" />
+            <button type="submit">Sign Up</button>
+        </form>
 
-        <Form.Group controlId="formPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-        </Form.Group>
 
-        <Button variant="primary" type="submit">
-            Register
-        </Button>
-    </Form>
-);
+    );
+
 
 
 
 };
+
+const Register = () => {
+
+    return (
+        <div>
+
+            <RegistrationForm />
+
+        </div>
+    )
+}
+
 
 export default Register;
