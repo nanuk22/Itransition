@@ -1,25 +1,16 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useContext } from 'react';
 import { Button, Form, Navbar } from 'react-bootstrap';
 import Header from './Header.js';
 import Main from './Home.js';
 import { useNavigate } from 'react-router-dom';
-import LoginLogout from './IsLoginFuction.js';
 import axios from 'axios';
-
+import { useAuth } from '../AuthContext.js';
 
 const LoginForm = () => {
-    const [isLogin, setLoginState] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    function LoginButton() {
-        function handleClick() {
-            navigate('/');
-        }
-        return (
-            <button variant="primary" type="submit" onClick={handleClick}>Login</button>
-        );
-    }
+    const { setLoginStatus } = useAuth();
 
     function SignUpButton() {
         function handleClick() {
@@ -36,7 +27,7 @@ const LoginForm = () => {
             email: email,
             password: password
         };
-        console.log('test  handllog');
+
         try {
             const response = await fetch('http://localhost:3001/login', {
                 method: 'POST',
@@ -52,6 +43,7 @@ const LoginForm = () => {
             const data = await response.json();
             console.log("success" + data);
             console.log('Registration successful');
+            setLoginStatus(true);
             navigate('/');
         } catch (error) {
             console.error('Registration failed:', error.message);

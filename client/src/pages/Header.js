@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Navbar, Nav, Form, Container, Stack, Carousel, CarouselItem, CarouselCaption, Col, Row, Dropdown, DropdownMenu } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Register from './Register.js';
 import { Link, useNavigate } from 'react-router-dom';
-import LoginLogout from './IsLoginFuction.js';
-
-
-
+import { AuthContext } from '../AuthContext.js';
 
 function UserMenu() {
     return (
@@ -23,7 +20,6 @@ function UserMenu() {
     )
 }
 
-
 function LoginButton() {
     const navigate = useNavigate();
 
@@ -37,17 +33,14 @@ function LoginButton() {
 }
 
 function LoginOrProfileButton() {
-    
-    console.log(LoginLogout());
+    const { isLogin, setLoginStatus } = useContext(AuthContext);
+
     return (
         <div>
-        
-            {LoginLogout() ? <UserMenu /> : <LoginButton />}
-        
-        </div> 
+            {isLogin ? <UserMenu /> : <LoginButton />}
+        </div>
     );
 }
-
 
 function SideBarButton() {
     return (
@@ -65,8 +58,6 @@ function SideBarButton() {
         </Dropdown>
     );
 }
-
-
 
 function Search() {
     return (
