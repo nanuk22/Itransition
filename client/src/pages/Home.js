@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 import { MDBCol, MDBFormInline, MDBIcon } from "mdbreact";
 import Header from './Header.js';
 
-
-
 const Collections = [
     { id: 0, category: "Books", name: "Paka" },
     { id: 1, category: "Books", name: "Vasika" },

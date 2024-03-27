@@ -6,18 +6,26 @@ import Login from './pages/Login.js';
 import ItemPage from './pages/Item.js';
 import CollectionPage from './pages/Collection.js';
 import { AuthProvider } from './AuthContext.js';
+import Profile from './pages/Profile.js';
+import CreateCollection from './pages/CreateCollection.js';
+import MyCollections from './pages/MyCollections.js';
+
+
 
 const App = () => {
   return (
     <BrowserRouter>
-    <AuthProvider>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/item" element={<ItemPage />} />
-        <Route path="/collection" element={<CollectionPage />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/item" element={<ItemPage />} />
+          <Route path="/collection" element={<CollectionPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/user/profile/:userId" element={<Profile />} />
+          <Route path="/user/create/:userId" element={<CreateCollection />} />
+          <Route path="/user/collections/:userId" element={<MyCollections />} />
+        </Routes>
       </AuthProvider>
     </BrowserRouter>
   );

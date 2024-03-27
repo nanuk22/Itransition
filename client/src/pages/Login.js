@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../AuthContext.js';
 
+
+
+
 const LoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -41,6 +44,7 @@ const LoginForm = () => {
                 throw new Error(`Failed to register. Status: ${response.status}`);
             }
             const data = await response.json();
+            localStorage.setItem('token', data.token);
             console.log("success" + data);
             console.log('Registration successful');
             setLoginStatus(true);
