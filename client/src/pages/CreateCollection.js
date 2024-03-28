@@ -1,8 +1,6 @@
-import React, { useState, useContext } from 'react';
-import { Button, Form, Navbar } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 import Header from './Header.js';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../AuthContext.js';
 import categories from './categories';
 import uploadImageToCloudStorage from './imageCloud';
 
@@ -76,7 +74,6 @@ const CreateCollectionForm = () => {
             imageUrl
         };
         console.log('Form submitted:', formData);
-        // You can send formData to your server for further processing
     };
 
 

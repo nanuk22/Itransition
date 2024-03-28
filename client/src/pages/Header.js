@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Navbar, Nav, Form, Container, Stack, Carousel, CarouselItem, CarouselCaption, Col, Row, Dropdown, DropdownMenu } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Register from './Register.js';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext, useAuth } from '../AuthContext.js';
 import { jwtDecode } from 'jwt-decode';
 
@@ -14,7 +13,6 @@ function UserMenu() {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        console.log('inheader ', token)
         if (token) {
             const decodedToken = jwtDecode(token);
             console.log('decodedToken ', decodedToken)
@@ -22,8 +20,6 @@ function UserMenu() {
             setUserId(userId);
         }
     }, []);
-
-    console.log('for menu', userId)
 
     function redirectToProfile() {
         if (userId) {
@@ -89,6 +85,7 @@ function LoginOrProfileButton() {
     );
 }
 
+//this will render with map real categories from categories.js
 function SideBarButton() {
     return (
         <Dropdown>
@@ -118,7 +115,6 @@ function Search() {
 }
 
 function Header() {
-    console.log("home f");
     const navigate = useNavigate();
     function handleToHomePage() {
         navigate('/');

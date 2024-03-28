@@ -1,16 +1,16 @@
 import React from 'react';
-import { Navbar, Nav, Form, Container, Stack, Carousel, CarouselItem, CarouselCaption, Col, Row } from 'react-bootstrap';
+import { Container, Stack, Carousel, Col, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
-import { MDBCol, MDBFormInline, MDBIcon } from "mdbreact";
 import Header from './Header.js';
 
+
+//this is just a temporary template to visualize. 
 const Collections = [
-    { id: 0, category: "Books", name: "Paka" },
-    { id: 1, category: "Books", name: "Vasika" },
-    { id: 2, category: "Money", name: "Kotik" },
-    { id: 3, category: "Maps", name: "Gogo" },
-    { id: 4, category: "Cars", name: "Nigga" },
+    { id: 0, category: "Books", name: "Borges" },
+    { id: 1, category: "Books", name: "Fiction" },
+    { id: 2, category: "Money", name: "Coins" },
+    { id: 3, category: "Maps", name: "Austria" },
+    { id: 4, category: "Cars", name: "BMW" },
 ];
 
 function CreateNewItem({ name, category }) {
@@ -37,6 +37,7 @@ function NewItems() {
     );
 }
 
+//this one also is for visualisation
 function BiggestCollections() {
     return (<div className='m-auto'><h2>Biggest Collections</h2>
         <Carousel interval={null}>

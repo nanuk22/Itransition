@@ -1,9 +1,6 @@
-import React, { useState, useContext } from 'react';
-import { Button, Form, Navbar } from 'react-bootstrap';
-import Header from './Header.js';
-import Main from './Home.js';
+import React, { useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useAuth } from '../AuthContext.js';
 
 

@@ -10,7 +10,7 @@ const firebaseConfig = {
     messagingSenderId: "982355779947",
     appId: "1:982355779947:web:b5ef1309050dab5b022c2e",
     measurementId: "G-W74G2PG7KG"
-  };
+};
 
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
@@ -23,7 +23,7 @@ const uploadImageToFirebaseStorage = async (file) => {
 
         uploadTask.on('state_changed',
             (snapshot) => {
-                // Progress updates can be logged here if needed
+                
             },
             (error) => {
                 console.error("Error uploading image:", error);

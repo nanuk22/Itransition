@@ -1,11 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import { Button, Form, Navbar } from 'react-bootstrap';
-import Header from './Header.js';
-import Main from './Home.js';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-
-
 
 
 function RegistrationForm() {
@@ -20,7 +14,6 @@ function RegistrationForm() {
     };
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
-        console.log('test');
         e.preventDefault();
         try {
             const response = await fetch('http://localhost:3001/register', {
@@ -49,22 +42,14 @@ function RegistrationForm() {
             <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Password" />
             <button type="submit">Sign Up</button>
         </form>
-
-
     );
-
-
-
-
 };
 
 const Register = () => {
 
     return (
         <div>
-
             <RegistrationForm />
-
         </div>
     )
 }
