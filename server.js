@@ -82,7 +82,7 @@ app.post('/login', async (req, res) => {
         const userId = user.rows[0].id;
         console.log('id', userId)
         const token = jwt.sign({ userId }, secretKey, { expiresIn: '1h' });
-        console.log('token ', token );
+        console.log('token ', token);
         res.status(200).json({ token });
     } catch (error) {
         console.error('Login error:', error);
@@ -107,7 +107,7 @@ app.get('/', (req, res) => {
     res.send('Hello, World!');
 });
 
-app.use(express.static(path.join(__dirname, 'client', 'public')));
+app.use(express.static(path.join(__dirname, 'client', 'build')));
 
 
 app.listen(port, () => {
