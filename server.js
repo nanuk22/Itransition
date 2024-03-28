@@ -32,7 +32,7 @@ app.use(express.json());
 app.use(cors());
 
 app.post('/register', async (req, res) => {
-    console.log('Received registration request 000:', req.body);
+    console.log('Received registration request:', req.body);
     const { username, email, password } = req.body;
     console.log(email);
     if (!username || !email || !password) {

@@ -16,7 +16,7 @@ function RegistrationForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:3001/register', {
+            const response = await fetch('https://itransition-1.onrender.com/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
